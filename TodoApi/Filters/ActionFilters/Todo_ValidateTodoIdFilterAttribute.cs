@@ -22,7 +22,7 @@ namespace TodoApi.Filters.ActionFilters
             {
                 if(todoId.Value <= 0) // Id é menor que 0? Manda o problema da requisião e um BadRequest
                 {
-                    context.ModelState.AddModelError("TodoId", "TodoId é inválido, pois é menor que zero.");
+                    context.ModelState.AddModelError("TodoId", "TodoId é inválido, pois é menor ou igual a zero.");
                     var problemDetails = new ValidationProblemDetails(context.ModelState)
                     {
                         Status = StatusCodes.Status400BadRequest
@@ -31,7 +31,7 @@ namespace TodoApi.Filters.ActionFilters
                 }
                 else // O id é maior ou igual que zero
                 {
-                    var todo = _db.Todos.Find(todoId);
+                    var todo = _db.Todos.Find(todoId.Value);
                     if(todo == null) // Não encontrou o Todo? Manda o problema na requisição e um NotFound 
                     {
                         context.ModelState.AddModelError("TodoId", "O Todo não existe.");
