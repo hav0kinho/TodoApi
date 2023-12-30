@@ -66,7 +66,7 @@ namespace TodoApi.Controllers
         {
             var todoToDelete = HttpContext.Items["todo"] as Todo;
 
-            _db.Todos.Remove(todoToDelete);
+            _db.Todos.Remove(todoToDelete!);
             _db.SaveChanges();
 
             return Ok(todoToDelete);
