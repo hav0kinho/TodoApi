@@ -1,1 +1,5 @@
 # TodoApi
+
+CONEXÃO COM BANCO DE DADOS(X)
+CRUD()
+VALIDAÇÕES()
