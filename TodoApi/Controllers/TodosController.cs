@@ -43,5 +43,21 @@ namespace TodoApi.Controllers
                 todo
             );
         }
+
+        [HttpPut("{id}")]
+        [TypeFilter(typeof(Todo_ValidateTodoIdFilterAttribute))]
+        [Todo_ValidateUpdateTodoFilter]
+        public IActionResult UpdateTodo(int id, Todo todo)
+        {
+            var todoToUpdate = HttpContext.Items["todo"] as Todo;
+
+            todoToUpdate!.Title = todo.Title;
+            todoToUpdate.IsCompleted = todo.IsCompleted;
+
+            _db.SaveChanges();
+
+            return NoContent();
+
+        }
     }
 }
