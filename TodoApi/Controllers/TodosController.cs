@@ -27,7 +27,7 @@ namespace TodoApi.Controllers
         [TypeFilter(typeof(Todo_ValidateTodoIdFilterAttribute))]
         public IActionResult GetTodoById(int id)
         {
-            return Ok(HttpContext.Items["shirt"]);
+            return Ok(HttpContext.Items["todo"]);
         }
 
         [HttpPost]
