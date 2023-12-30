@@ -59,5 +59,17 @@ namespace TodoApi.Controllers
             return NoContent();
 
         }
+
+        [HttpDelete("{id}")]
+        [TypeFilter(typeof(Todo_ValidateTodoIdFilterAttribute))]
+        public IActionResult DeleteTodo(int id)
+        {
+            var todoToDelete = HttpContext.Items["todo"] as Todo;
+
+            _db.Todos.Remove(todoToDelete);
+            _db.SaveChanges();
+
+            return Ok(todoToDelete);
+        }
     }
 }
